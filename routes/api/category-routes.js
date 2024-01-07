@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Products
   try {
     const data = await Category.findAll({
-      include: [{ model: Product }]
+      include: Product
     });
 
     res.status(200).json(data);
@@ -22,8 +22,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   try {
     const data = await Category.findByPk(req.params.id, {
-      // JOIN with travellers, using the Trip through table
-      include: [{ model: Product }]
+      include: Product
     });
 
     if (!data) {
